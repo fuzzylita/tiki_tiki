@@ -12,6 +12,7 @@ class IngredientsController < ApplicationController
 
   # POST: /ingredients
   post "/ingredients" do
+    Ingredient.create(name: params["name"])
     redirect "/ingredients"
   end
 

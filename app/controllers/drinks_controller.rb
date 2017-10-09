@@ -45,13 +45,3 @@ class DrinksController < ApplicationController
     redirect "/drinks"
   end
 end
-
-
-
-# params => {
-#   drink => {
-#     name: 'old-fashioned',
-#     instructions: 'stir and drink',
-#     ingredients: [id1, id2, id3]
-#   }
-# }
