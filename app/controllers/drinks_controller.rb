@@ -12,26 +12,46 @@ class DrinksController < ApplicationController
 
   # POST: /drinks
   post "/drinks" do
-    redirect "/drinks"
+    @user = User.find_by(id: session[:id])
+    ingredients = params["drink"]["ingredient_ids"].map do |i|
+      Ingredient.find(i)
+    end
+    @drink = @user.drinks.create(
+      name: params["drink"]["name"],
+      instructions: params["drink"]["instructions"],
+      ingredients: ingredients
+    )
+    redirect "/drinks/#{@drink.slug}"
   end
 
-  # GET: /drinks/5
-  get "/drinks/:id" do
+  # GET: /drinks/slug
+  get "/drinks/:slug" do
+    @drink = Drink.find_by_slug(params[:slug])
     erb :"/drinks/show.html"
   end
 
-  # GET: /drinks/5/edit
-  get "/drinks/:id/edit" do
+  # GET: /drinks/slug/edit
+  get "/drinks/:slug/edit" do
     erb :"/drinks/edit.html"
   end
 
-  # PATCH: /drinks/5
-  patch "/drinks/:id" do
+  # PATCH: /drinks/slug
+  patch "/drinks/:slug" do
     redirect "/drinks/:id"
   end
 
-  # DELETE: /drinks/5/delete
-  delete "/drinks/:id/delete" do
+  # DELETE: /drinks/slug/delete
+  delete "/drinks/:slug/delete" do
     redirect "/drinks"
   end
 end
+
+
+
+# params => {
+#   drink => {
+#     name: 'old-fashioned',
+#     instructions: 'stir and drink',
+#     ingredients: [id1, id2, id3]
+#   }
+# }

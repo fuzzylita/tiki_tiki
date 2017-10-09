@@ -1,1 +1,17 @@
-<h1>This is the Model's index page.</h1>
+<div class="container">
+  <h3>Tiki's Tiki-Tiki Ingredients list</h3>
+
+  <div class="content">
+    <ul>
+      <% Ingredient.all.each do |i| %>
+        <li><%= i.name %></a></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="content">
+    <br>
+    <p><a href="/users/<%= session[:id]%>">Go back</a> to your personal collection</p>
+  </div>
+</div>
+

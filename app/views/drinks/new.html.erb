@@ -1,1 +1,33 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<div class="container">
+    <h2>Create a new drink!</h2>
+
+      <div class="content">
+        <form action="/drinks" method="POST">
+          <h3>Drink Name: <input type="text" name="drink[name]" id="drink_name"></h3><br>
+
+          <h4>Select any ingredients you'd like to include:</h4><br>
+            <ul>
+              <% Ingredient.all.each do |ingredient|%>
+              <li>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="drink[ingredient_ids][]"
+                    value="<%= ingredient.id %>"
+                    id="ingredient_<%= ingredient.id%>">
+                  <%= ingredient.name %>
+                </label>
+              </li>
+              <% end %>
+            </ul>
+            <br>
+          <h4>Drink Instructions: <input type="text" name="drink[instructions]" id="drink_name"></h4><br>
+          <input type="submit" name="submit" id="submit" value="Create New Drink">
+        </form>
+      </div>
+
+      <div class="content">
+        <br>
+        <p>Need to include a <a href="/ingredients/new">new ingredient</a> for this drink?</p>
+      </div>
+    </div>
