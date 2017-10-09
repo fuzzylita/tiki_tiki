@@ -1,22 +1,37 @@
 class UsersController < ApplicationController
 
-  # GET: /users
-  get "/users" do
-    erb :"/users/index.html"
-  end
 
-  # GET: /users/new
   get "/users/new" do
     erb :"/users/new.html"
   end
 
-  # POST: /users
-  post "/users" do
-    redirect "/users"
+  post '/users' do
+    if Helpers.existing_user?(params["email"])
+      redirect '/users/login'
+    end
+
+    if params['username'].empty? || params['password'].empty? || params['email'].empty?
+      redirect '/users/new'
+    end
+
+    user = User.create(username: params['username'], email: params['email'], password: params['password'])
+    session[:id] = user.id
+
+    redirect "/users/#{user.username}"
   end
 
-  # GET: /users/5
-  get "/users/:id" do
+
+  # GET: /users/login
+  get "/users/login" do
+    erb :"/users/login.html"
+  end
+
+  post '/users/login' do
+
+  end
+
+  # GET: /users/:username
+  get "/users/:username" do
     erb :"/users/show.html"
   end
 
