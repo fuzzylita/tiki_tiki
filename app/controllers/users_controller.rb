@@ -23,11 +23,21 @@ class UsersController < ApplicationController
 
   # GET: /users/login
   get "/users/login" do
-    erb :"/users/login.html"
+    if Helpers.is_logged_in?(session)
+      redirect "/users/:username"
+    else
+      erb :"/users/login.html"
+    end
   end
 
   post '/users/login' do
-
+    @user = User.find_by(email: params["email"])
+    if @user && @user.authenticate(params["password"])
+      session[:id] = @user.id
+      redirect "/users/#{@user.username}"
+    else
+      redirect '/users/login', params
+    end
   end
 
   # GET: /users/:username
