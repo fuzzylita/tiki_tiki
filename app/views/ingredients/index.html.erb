@@ -1,10 +1,10 @@
 <div class="container">
-  <h3>Tiki's Tiki-Tiki Ingredients list</h3>
+  <h2>The Tiki-Tiki Ingredients list</h2>
 
   <div class="content">
     <ul>
       <% Ingredient.all.each do |i| %>
-        <li><%= i.name %></a></li>
+        <li><%= i.titlecaser %></a></li>
       <% end %>
     </ul>
   </div>

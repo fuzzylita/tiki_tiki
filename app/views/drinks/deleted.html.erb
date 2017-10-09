@@ -1,0 +1,8 @@
+<div class="container">
+  <h3><%= @name.split(" ").map {|w| w.capitalize}.join(" ") %>! %> has been deleted!</h3>
+
+    <p>Return to your <a href="/users/<%= @user.id %>">drinks</a> collection</p>
+
+    <br>
+    <p><a href="/users/logout">Log out</a> of your account</p>
+</div>

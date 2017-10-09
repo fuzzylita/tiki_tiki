@@ -1,9 +1,13 @@
-module Slugifiable
+module TextManipulator
 
   module InstanceMethods
 
     def slug
       self.name.downcase.split(" ").join("-")
+    end
+
+    def titlecaser
+      self.name.split(" ").map {|w| w.capitalize}.join(" ")
     end
 
   end
@@ -19,7 +23,6 @@ module Slugifiable
         end
       end
       match
-
     end
 
   end

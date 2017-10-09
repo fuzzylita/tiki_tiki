@@ -1,21 +1,39 @@
 <div class="container">
-    <h2><%= @drink.name%>!</h2>
+  <h2><%= @drink.titlecaser %>!</h2>
 
-    <div class="content">
-        <h3>Ingredients:</h3>
-        <ul>
-          <% @drink.ingredients.each do |i| %>
-            <li><%= i.name %></li>
-          <% end %>
-        </ul>
+  <div class="content">
+    <h3>Ingredients:</h3>
+    <ul>
+      <% @drink.ingredients.each do |i| %>
+        <li><%= i.titlecaser %></li>
+      <% end %>
+    </ul>
+    <br>
+    <h3>Instructions:</h3>
+      <%= @drink.instructions %>
+  </div>
 
-        <br>
-        <h3>Instructions:</h3>
-        <%= @drink.instructions %>
-      </div>
+  <div>
+    <h4>Options:</h4>
+    <br>
+    <table>
+      <form action="/drinks/<%= @drink.slug %>/edit" method="GET">
+        <tr><input type="submit" name="submit" value="Edit Drink"></tr>
+      </form>
+      <br>
+      <br>
+      <form action="/drinks/<%= @drink.slug %>/delete" method="POST">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <tr><input type="submit" name="submit" value="Delete Drink"></tr>
+      </form>
+      <br>
+      <br>
+    </table>
 
-      <div class="content">
-        <br>
-        <p>Go back to the <a href="/drinks">drinks list.</a></p>
-      </div>
-</div>
+    <br>
+    <br>
+    <br>
+    <br>
+      <p><a href="/users/<%= @user.id %>">Go back</a> to your drinks collection</p>
+      <p><a href="/users/logout">Log out</a> of your account</p>
+  </div>

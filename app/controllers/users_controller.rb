@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   post '/users' do
+    session.clear
     if Helpers.existing_user?(params["email"])
       redirect '/users/login'
     end
@@ -31,6 +32,7 @@ class UsersController < ApplicationController
   end
 
   post '/users/login' do
+    session.clear
     @user = User.find_by(email: params["email"])
     if @user && @user.authenticate(params["password"])
       session[:id] = @user.id
@@ -40,7 +42,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET: /users/:username
+  # GET: /users/:id
   get "/users/:id" do
     if params[:id].to_i == session[:id]
       @user = User.find(params[:id])
@@ -51,18 +53,9 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET: /users/5/edit
-  get "/users/:id/edit" do
-    erb :"/users/edit.html"
-  end
-
-  # PATCH: /users/5
-  patch "/users/:id" do
-    redirect "/users/:id"
-  end
-
-  # DELETE: /users/5/delete
-  delete "/users/:id/delete" do
-    redirect "/users"
+  # LOGOUT: /users/5/logout
+  get "/users/logout" do
+    session.clear
+    redirect "/users/login"
   end
 end

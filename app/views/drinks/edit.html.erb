@@ -1,1 +1,39 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<div class="container">
+    <h2>Edit your "<%= @drink.titlecaser %>"</h2>
+
+      <div class="content">
+        <form action="/drinks/<%= @drink.slug %>" method="POST">
+        <input id="hidden" type="hidden" name="_method" value="patch">
+          <h3>Edit Drink Name (cannot be empty): <input type="text" name="drink[name]" value="<%= @drink.titlecaser %>" required></h3><br>
+
+          <h4>Edit ingredients you'd like to include:</h4><br>
+            <ul>
+              <% Ingredient.all.each do |ingredient|%>
+              <li>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="drink[ingredient_ids][]"
+                    value="<%= ingredient.id %>"
+                    <%='checked' if @drink.ingredients.include?(ingredient) %>>
+                  <%= ingredient.titlecaser %>
+                </label>
+              </li>
+              <% end %>
+            </ul>
+            <br>
+          <h4>Edit Drink Instructions: <input type="text" name="drink[instructions]" value="<%= @drink.instructions %>"></h4><br>
+          <input type="submit" name="submit" value="Update Drink">
+        </form>
+      </div>
+
+      <div class="content">
+        <br>
+        <p>Need to include a <a href="/ingredients/new">new ingredient</a> for this drink?</p>
+      </div>
+
+      <div class="content">
+        <br>
+        <p><a href="/users/<%= @user.id %>">Return</a> to your drinks collection</p>
+      </div>
+    </div>

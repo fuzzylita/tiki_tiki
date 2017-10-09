@@ -1,17 +1,21 @@
 <div class="container">
-  <h2>Welcome back <%= @user.username%>!</h2>
+  <h2>Welcome, <%= @user.username.split(" ").map {|w| w.capitalize}.join(" ") %>!</h2>
 
     <div class="content">
       <h3>Your Drink collection:</h3>
       <ul>
         <% @user.drinks.each do |d| %>
-          <li><a href="/drinks/<%= d.slug %>"><%= d.name %></a></li>
+          <li><a href="/drinks/<%= d.slug %>"><%= d.titlecaser %></a></li>
         <% end %>
       </ul>
     </div>
 
     <div class="content">
       <br>
-      <p>Want to add a <a href="/drinks/new">new drink</a> to your collection?</p>
+      <br>
+      <p><a href="/drinks/new">Create</a> a new drink</p>
+      <p><a href="/drinks">View</a> the complete drinks list</p>
+      <br>
+      <p><a href="/users/logout">Log out</a> of your account</p>
     </div>
   </div>

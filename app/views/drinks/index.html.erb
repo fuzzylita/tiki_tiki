@@ -1,17 +1,25 @@
 <div class="container">
-    <h2>Tiki's Tiki-Tiki Drinks List!</h2>
-      <h3>A collaborative Drink Library from all of your friends.</h3>
-
-      <div class="content">
-        <ul>
-          <% Drink.all.each do |d| %>
-            <li><a href="/drinks/<%= d.slug %>"><%= d.name %></a></li>
-          <% end %>
-        </ul>
-      </div>
-
-      <div class="content">
-        <br>
-        <p>Want to <a href="/users/<%= session[:id]%>">go back</a> to your personal collection?</p>
-      </div>
+  <h2>The Tiki-Tiki Drinks List!</h2>
+    <div class="content">
+      <br>
+      <table>
+        <tr>
+          <th>Drink Name</th>
+          <th>Creator</th>
+        </tr>
+        <% Drink.all.each do |d| %>
+        <tr>
+          <td><a href="/drinks/<%= d.slug %>"><%= d.titlecaser %></a></td>
+          <td><%= d.user.username %></td>
+        </tr>
+        <% end %>
+      </table>
     </div>
+
+    <div class="content">
+      <br>
+      <br>
+      <p><a href="/users/<%= session[:id]%>">Go back</a> to your personal collection</p>
+      <p><a href="/users/logout">Log out</a> of your account</p>
+    </div>
+  </div>
