@@ -16,6 +16,7 @@ class DrinksController < ApplicationController
     ingredients = params["drink"]["ingredient_ids"].map do |i|
       Ingredient.find(i)
     end
+
     @drink = @user.drinks.create(
       name: params["drink"]["name"],
       instructions: params["drink"]["instructions"],
@@ -27,21 +28,38 @@ class DrinksController < ApplicationController
   # GET: /drinks/slug
   get "/drinks/:slug" do
     @drink = Drink.find_by_slug(params[:slug])
+    @user = User.find_by(id: session[:id])
     erb :"/drinks/show.html"
   end
 
   # GET: /drinks/slug/edit
   get "/drinks/:slug/edit" do
+    @drink = Drink.find_by_slug(params[:slug])
+    @user = User.find_by(id: session[:id])
     erb :"/drinks/edit.html"
   end
 
   # PATCH: /drinks/slug
   patch "/drinks/:slug" do
-    redirect "/drinks/:id"
+    @drink = Drink.find_by_slug(params[:slug])
+    ingredients = params["drink"]["ingredient_ids"].map do |i|
+      Ingredient.find(i)
+    end
+
+    @drink.update(
+      name: params["drink"]["name"],
+      instructions: params["drink"]["instructions"],
+      ingredients: ingredients
+    )
+    redirect "/drinks/#{@drink.slug}"
   end
 
   # DELETE: /drinks/slug/delete
   delete "/drinks/:slug/delete" do
-    redirect "/drinks"
+    drink = Drink.find_by_slug(params[:slug])
+    @name = drink.name
+    @user = User.find_by(id: session[:id])
+    drink.delete
+    erb :"/drinks/deleted.html"
   end
 end

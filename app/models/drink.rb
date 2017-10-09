@@ -3,6 +3,6 @@ class Drink < ActiveRecord::Base
   has_many :drink_ingredients
   has_many :ingredients, through: :drink_ingredients
 
-  include Slugifiable::InstanceMethods
-  extend Slugifiable::ClassMethods
+  include TextManipulator::InstanceMethods
+  extend TextManipulator::ClassMethods
 end

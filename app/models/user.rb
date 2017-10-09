@@ -2,6 +2,6 @@ class User < ActiveRecord::Base
   has_many :drinks
   has_secure_password
 
-  include Slugifiable::InstanceMethods
-  extend Slugifiable::ClassMethods
+  include TextManipulator::InstanceMethods
+  extend TextManipulator::ClassMethods
 end
