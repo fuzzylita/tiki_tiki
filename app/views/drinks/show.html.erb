@@ -1,1 +1,21 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<div class="container">
+    <h2><%= @drink.name%>!</h2>
+
+    <div class="content">
+        <h3>Ingredients:</h3>
+        <ul>
+          <% @drink.ingredients.each do |i| %>
+            <li><%= i.name %></li>
+          <% end %>
+        </ul>
+
+        <br>
+        <h3>Instructions:</h3>
+        <%= @drink.instructions %>
+      </div>
+
+      <div class="content">
+        <br>
+        <p>Go back to the <a href="/drinks">drinks list.</a></p>
+      </div>
+</div>
