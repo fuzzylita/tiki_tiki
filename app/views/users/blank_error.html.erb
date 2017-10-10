@@ -1,0 +1,25 @@
+<div class="container">
+  <h3>Please make sure that all form fields are filled in!</h3>
+
+  <div class="container">
+    <h2>Create your Tiki-Tiki account!</h2>
+
+    <div class="content">
+      <br>
+      <form action="/users" method="POST">
+        <h3>Create a name: <input type="text" name="name"></h3>
+        <h3>Enter your Email: <input type="email" name="email"></h3>
+        <h3>Create a Password: <input type="password" name="password"></h3>
+        <br>
+        <input type="submit" name="submit" value="Sign Up!">
+      </form>
+      <br>
+    </div>
+
+    <div class="content">
+      <br>
+      <br>
+      <p>Already have an account? <a href="/users/login">Log in</a> to access your drinks.</p>
+    </div>
+  </div>
+</div>

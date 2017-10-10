@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Welcome, <%= @user.username.split(" ").map {|w| w.capitalize}.join(" ") %>!</h2>
+  <h2>Welcome, <%= @user.titlecaser %>!</h2>
 
     <div class="content">
       <h3>Your Drink collection:</h3>
@@ -15,7 +15,8 @@
       <br>
       <p><a href="/drinks/new">Create</a> a new drink</p>
       <p><a href="/drinks">View</a> the complete drinks list</p>
+      <p><a href="/ingredients">View</a> the complete ingredients list</p>
       <br>
       <p><a href="/users/logout">Log out</a> of your account</p>
     </div>
-  </div>
+</div>

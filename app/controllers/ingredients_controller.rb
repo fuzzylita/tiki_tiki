@@ -2,18 +2,33 @@ class IngredientsController < ApplicationController
 
   # GET: /ingredients
   get "/ingredients" do
-    erb :"/ingredients/index.html"
+    if Helpers.is_logged_in?(session)
+      erb :"/ingredients/index.html"
+    else
+      redirect '/users/login'
+    end
   end
 
   # GET: /ingredients/new
   get "/ingredients/new" do
-    erb :"/ingredients/new.html"
+    if Helpers.is_logged_in?(session)
+      erb :"/ingredients/new.html"
+    else
+      redirect '/users/login'
+    end
   end
 
   # POST: /ingredients
   post "/ingredients" do
-    Ingredient.create(name: params["name"])
-    redirect "/ingredients"
+    curr_ings = Ingredient.all.map {|i| i.name.downcase }
+    if !curr_ings.include?(params["name"].downcase)
+      Ingredient.create(name: params["name"])
+      flash[:message] = "#{params["name"]} has been created"
+      redirect "/ingredients"
+    else
+      flash[:message] = "#{params["name"]} already exists"
+      redirect "/ingredients"
+    end
   end
 
 end

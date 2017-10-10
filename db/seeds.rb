@@ -1,5 +1,5 @@
-tiki = User.create(username: "Tiki", email: "tiki@tiki.com", password: "bananas")
-lita = User.create(username: "Lita", email: "lita@tiki.com", password: "bananas")
+tiki = User.create(name: "Tiki", email: "tiki@tiki.com", password: "bananas")
+lita = User.create(name: "Lita", email: "lita@tiki.com", password: "bananas")
 
 coffee = Drink.create(name: "coffee", instructions: "pour 8 oz into a cup")
 banana_old_fashioned = Drink.create(name: "banana old-fashioned", instructions: "stir 2 oz rum, 1 oz banana, 2 dash bitters. Strain and serve over ice")
