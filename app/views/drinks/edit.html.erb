@@ -4,7 +4,7 @@
       <div class="content">
         <form action="/drinks/<%= @drink.slug %>" method="POST">
         <input id="hidden" type="hidden" name="_method" value="patch">
-          <h3>Edit Drink Name (cannot be empty): <input type="text" name="drink[name]" value="<%= @drink.titlecaser %>" required></h3><br>
+          <h3>Edit Drink Name: <input type="text" name="drink[name]" value="<%= @drink.titlecaser %>" required></h3><br>
 
           <h4>Edit ingredients you'd like to include:</h4><br>
             <ul>

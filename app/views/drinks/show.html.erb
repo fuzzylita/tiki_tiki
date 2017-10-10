@@ -13,6 +13,7 @@
       <%= @drink.instructions %>
   </div>
 
+  <% if @user.id == @drink.user.id %>
   <div>
     <h4>Options:</h4>
     <br>
@@ -29,6 +30,7 @@
       <br>
       <br>
     </table>
+  <% end %>
 
     <br>
     <br>
