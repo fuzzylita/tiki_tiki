@@ -1,26 +1,22 @@
 class UsersController < ApplicationController
-
-
   get "/users/new" do
+    session.clear
     erb :"/users/new.html"
   end
 
   post '/users' do
-    session.clear
     if Helpers.existing_user?(params["email"])
-      redirect '/users/login'
+      return erb :'/users/new_error.html'
     end
 
-    if params['username'].empty? || params['password'].empty? || params['email'].empty?
-      redirect '/users/new'
+    if params['name'].empty? || params['password'].empty? || params['email'].empty?
+      return erb :'/users/blank_error.html'
     end
 
-    user = User.create(username: params['username'], email: params['email'], password: params['password'])
+    user = User.create(name: params['name'], email: params['email'], password: params['password'])
     session[:id] = user.id
-
     redirect "/users/#{user.id}"
   end
-
 
   # GET: /users/login
   get "/users/login" do
@@ -38,8 +34,14 @@ class UsersController < ApplicationController
       session[:id] = @user.id
       redirect "/users/#{@user.id}"
     else
-      redirect '/users/login'
+      return erb :'/users/invalid_error.html'
     end
+  end
+
+  # LOGOUT: /users/5/logout
+  get "/users/logout" do
+    session.clear
+    redirect "/users/login"
   end
 
   # GET: /users/:id
@@ -53,9 +55,4 @@ class UsersController < ApplicationController
     end
   end
 
-  # LOGOUT: /users/5/logout
-  get "/users/logout" do
-    session.clear
-    redirect "/users/login"
-  end
 end

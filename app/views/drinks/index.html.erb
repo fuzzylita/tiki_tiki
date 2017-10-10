@@ -10,7 +10,7 @@
         <% Drink.all.each do |d| %>
         <tr>
           <td><a href="/drinks/<%= d.slug %>"><%= d.titlecaser %></a></td>
-          <td><%= d.user.username %></td>
+          <td><%= d.user.name %></td>
         </tr>
         <% end %>
       </table>
