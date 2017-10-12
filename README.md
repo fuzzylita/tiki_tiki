@@ -4,7 +4,6 @@
 A simple, social cocktail database. Once signed up, users can create cocktails and and save them to their personal library. Users can create ingredients, which are added to the communal database and manage their own recipes, as well as view the complete list of recipes for all users. 
 
 ## Installation
-a
 1. [Fork and clone](https://help.github.com/articles/cloning-a-repository/) this repository to your local environment.
 2. Install gem dependencies using the following command in your terminal:
 ```
