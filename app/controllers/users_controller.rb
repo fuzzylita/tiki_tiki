@@ -48,6 +48,7 @@ class UsersController < ApplicationController
   get "/users/:id" do
     if params[:id].to_i == session[:id]
       @user = User.find(params[:id])
+      @drinks = @user.drinks.order("lower(name)")
       erb :"/users/index.html"
     else
       session.clear

@@ -4,7 +4,7 @@
     <div class="content">
       <h3>Your Drink collection:</h3>
       <ul>
-        <% @user.drinks.each do |d| %>
+        <% @drinks.each do |d| %>
           <li><a href="/drinks/<%= d.slug %>"><%= d.titlecaser %></a></li>
         <% end %>
       </ul>

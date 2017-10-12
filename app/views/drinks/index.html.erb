@@ -4,10 +4,10 @@
       <br>
       <table>
         <tr>
-          <th>Drink Name</th>
+          <th align="left">Drink Name</th>
           <th>Creator</th>
         </tr>
-        <% Drink.all.each do |d| %>
+        <% @drinks.each do |d| %>
         <tr>
           <td><a href="/drinks/<%= d.slug %>"><%= d.titlecaser %></a></td>
           <td><%= d.user.name %></td>

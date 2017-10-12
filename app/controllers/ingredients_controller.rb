@@ -3,6 +3,7 @@ class IngredientsController < ApplicationController
   # GET: /ingredients
   get "/ingredients" do
     if Helpers.is_logged_in?(session)
+      @ingredients = Ingredient.order("lower(name)")
       erb :"/ingredients/index.html"
     else
       redirect '/users/login'

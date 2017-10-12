@@ -3,7 +3,7 @@
 
   <div class="content">
     <ul>
-      <% Ingredient.all.each do |i| %>
+      <% @ingredients.each do |i| %>
         <li><%= i.titlecaser %></a></li>
       <% end %>
     </ul>
