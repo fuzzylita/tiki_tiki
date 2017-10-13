@@ -3,6 +3,10 @@
 ## Overview
 A simple, social cocktail database. Once signed up, users can create cocktails and and save them to their personal library. Users can create ingredients, which are added to the communal database and manage their own recipes, as well as view the complete list of recipes for all users. 
 
+## Requirements
+
+- Ruby 2.1 or higher
+
 ## Installation
 1. [Fork and clone](https://help.github.com/articles/cloning-a-repository/) this repository to your local environment.
 2. Install gem dependencies using the following command in your terminal:
@@ -14,12 +18,11 @@ $ bundle install
 $ rake db:migrate
 $ rake db:seed
 ```
-4. [Install PostgreSQL](https://www.postgresql.org/download/). Open PostgreSQL and start the server (click the start button).
-5. Start the application server:
+4. Start the application server:
 ```
 $ shotgun
 ```
-6. Navigate to http://127.0.0.1:9393/signup to get started.
+5. Navigate to http://127.0.0.1:9393/signup to get started.
 
 ## Contributing
 
