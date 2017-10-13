@@ -22,7 +22,7 @@ $ rake db:seed
 ```
 $ shotgun
 ```
-5. Navigate to http://127.0.0.1:9393/signup to get started.
+5. Navigate to http://127.0.0.1:9393 to get started.
 
 ## Contributing
 
